@@ -45,16 +45,6 @@ import store from './assets/vuex/storage.js';
 Framework7.use(Framework7Vue);
 var $$ = Dom7;
 
-var token = localStorage.getItem("token");
-
-if (token !== undefined) {
-    Framework7.request.setup({
-        headers: {
-            'Authorization': token
-        }
-    });
-}
-
 
 // Init Vue App
 export default new Vue({

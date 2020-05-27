@@ -45,8 +45,8 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.11.1",
     "chart.js": "^2.9.3",
-    "cordova-android": "^8.1.0",
     "cordova-browser": "^6.0.0",
+    "cordova-clipboard": "^1.3.0",
     "cordova-plugin-androidx": "^1.0.2",
     "cordova-plugin-androidx-adapter": "^1.1.0",
     "cordova-plugin-firebase-lib": "^5.1.1",
@@ -74,10 +74,10 @@
         "FIREBASE_MESSAGING_VERSION": "20.1.+",
         "FIREBASE_ANALYTICS_VERSION": "17.2.+",
         "ANDROIDX_CORE_VERSION": "1.0.+"
-      }
+      },
+      "cordova-clipboard": {}
     },
     "platforms": [
-      "android",
       "browser"
     ]
   }

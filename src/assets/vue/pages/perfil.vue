@@ -30,31 +30,9 @@
             <label>Teléfono</label>
             <input v-model="phone" type="text" id="telefono" class="form-control input-form-underline">
         </div>
-        <div class="floating-label-group">
-            <label>Fecha de nacimiento</label>
-            <input v-model="bdate" type="date" id="nacimiento" class="form-control input-form-underline" required="">
-        </div>
         <br>
-        <p class="sub-title-cuenta">Dirección</p>
-        <div class="floating-label-group">
-            <label>Dirección</label>
-            <input v-model="dir" type="text" id="direccion" class="form-control input-form-underline" required="">
-        </div>
-        <div class="floating-label-group">
-            <label>Estado</label>
-            <input v-model="estado" type="text" id="estado" class="form-control input-form-underline" required="">
-        </div>
-        <div class="floating-label-group">
-            <label>Ciudad</label>
-            <input v-model="ciudad" type="text" id="ciudad" class="form-control input-form-underline" required="">
-        </div>
-        <div class="floating-label-group">
-            <label>Código postal</label>
-            <input v-model="cp" type="text" id="cp" class="form-control input-form-underline" required="">
-        </div>
-        <div class="form-group">
-            <f7-button fill large class="mt-30" style="background-color: #49B7F3;" @click="guardar()">Guardar</f7-button>
-        </div>
+
+        <f7-button type="button" @click="guardar()" class="btn btn-lg-blue">Actualizar</f7-button>
       </form>
 
     </f7-block>
@@ -78,11 +56,6 @@
         last_name:'',
         email:'',
         phone:'',
-        bdate:'',
-        dir:'',
-        estado:'',
-        ciudad:'',
-        cp:'',
       };
     },
     created() {
@@ -99,11 +72,6 @@
           self.last_name = json_data.apellidos;
           self.email = json_data.correo;
           self.phone = json_data.telefono;
-          self.bdate = json_data.nacimiento;
-          self.dir = json_data.direccion;
-          self.estado = json_data.estado;
-          self.ciudad = json_data.ciudad;
-          self.cp = json_data.codigop;
         },
         function error(xhr, status) {
           
@@ -120,11 +88,6 @@
             last_name: self.last_name,
             phone: self.phone,
             email: self.email,
-            address: self.dir,
-            state: self.estado,
-            city: self.ciudad,
-            date: self.bdate,
-            cp: self.cp
         };
         var url = localStorage.getItem("url_server");
         app.request.post(

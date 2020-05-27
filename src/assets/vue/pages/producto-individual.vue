@@ -29,14 +29,15 @@
                     <div class="row">
                         <div class="col-lg-4 col-md-4">
                             <div class="d-img-pro-ind ">
-                                <img :src="'https://powergolden.com.mx/productos_img/'+info_prod.imagen" alt="">
+                                <img :src="$store.state.url_server+'productos_img/'+info_prod.imagen" alt="">
                             </div>
                         </div>
                         <div class="col-lg-8 col-md-8">
                             <div class="d-info-pro-ind">
                                 <div class="row">
                                     <div class="col-lg-8 col-md-8">
-                                        <span class="badge badge-disponible">Disponible: {{info_prod.inventario}} pz.</span>
+                                        <span class="badge badge-disponible" v-if="info_prod.existencia != 0">Disponible: {{info_prod.existencia}} pz.</span>
+                                        <span class="badge badge-disponible" style="background-color:#ff4c4c" v-else>No disponible: {{info_prod.existencia}} pz.</span>
                                         <p class="title-pro-ind one-line">{{info_prod.nombre}}</p>
                                     </div>
                                     <div class="col-lg-4 col-md-4">
@@ -50,10 +51,10 @@
                                         <p class="t2"><b>Modo de uso:</b> {{info_prod.uso}}</p>
                                     </div>
                                 </div>
-                                <div class="row row-cant-pro-ind">
+                                <div class="row row-cant-pro-ind" v-if="info_prod.existencia != 0">
                                     <div class="col-lg-12 col-md-12">
                                         <form class="form-cant-pro-ind">
-                                           <p class="t1"><b>Cantidad</b></p>
+                                            <p class="t1"><b>Cantidad</b></p>
                                             <f7-row>
                                                 <f7-col width="20">
                                                     <f7-button @click="decrementar()" fill style="margin:1rem 0;background-color: rgba(0,0,0,0.1);color: black;"><strong>-</strong></f7-button>
@@ -88,7 +89,7 @@
                     <div class="row">
                       <f7-col width="40">
                         <div class="d-img-pro">
-                          <img :src="'https://powergolden.com.mx/productos_img/'+item.imagen" alt="">
+                          <img :src="$store.state.url_server+'productos_img/'+item.imagen" alt="">
                         </div>
                       </f7-col>
                       <f7-col width="60">

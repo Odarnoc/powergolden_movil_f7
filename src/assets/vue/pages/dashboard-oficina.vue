@@ -15,7 +15,7 @@
         </f7-col>
         <f7-col>
           <div class="clearfix d-item-num-oficina">
-              <p class="t1">15</p>
+              <p class="t1">{{estadisticaPersonas}}</p>
               <p class="t2">Personas en tu red</p>
           </div>
         </f7-col>
@@ -23,13 +23,13 @@
       <f7-row>
         <f7-col>
           <div class="clearfix d-item-num-oficina">
-              <p class="t1">4</p>
+              <p class="t1">{{puntosPersonales}}</p>
               <p class="t2">Puntos personales</p>
           </div>
         </f7-col>
         <f7-col>
           <div class="clearfix d-item-num-oficina">
-              <p class="t1">401</p>
+              <p class="t1">{{puntosGrupales}}</p>
               <p class="t2">Puntos grupales</p>
           </div>
         </f7-col>
@@ -37,78 +37,32 @@
       <f7-row>
         <f7-col>
           <div class="clearfix d-item-num-oficina">
-              <p class="t1">4</p>
-              <p class="t2">Negocio personal</p>
+              <p class="t1">{{compras}}</p>
+              <p class="t2">Compras de {{mes}}</p>
           </div>
         </f7-col>
         <f7-col>
           <div class="clearfix d-item-num-oficina">
-              <p class="t1">591</p>
-              <p class="t2">Negocio grupal</p>
+              <p class="t1">{{rollOver}}</p>
+              <p class="t2">Roll over</p>
           </div>
         </f7-col>
       </f7-row>
       <f7-row>
-        <f7-col>
+      <f7-col>
           <div class="clearfix d-item-num-oficina">
-              <p class="t1">74,225</p>
-              <p class="t2">Bonificaciones</p>
-          </div>
-        </f7-col>
-        <f7-col>
-          <div class="clearfix d-item-num-oficina">
-              <p class="t1">37%</p>
+              <p class="t1">{{activas}}</p>
               <p class="t2">Personas activas</p>
           </div>
         </f7-col>
       </f7-row>
+
+
+
       <f7-row style="margin-bottom: 20px;">
         <f7-col>
           <div class="d-grafica-oficina">
-              <p class="title-chart-oficina">Indicadores</p>
-              <p class="sub-title-chart-oficina">Periodo 1901 respecto Periodo 1812</p>
-              <div class="row">
-                  <div class="col-lg-4 col-md-4">
-                      <div class="d-item-chart-pie">
-                          <div class="d-chart-pie">
-                              <div id="pie1" class="chart" data-percent="86">
-                                  <span class="percent">86</span>
-                              </div>
-                          </div>
-                          <p class="t1">Actividad calificada</p>
-                          <p class="t2">0/713</p>
-                      </div>
-                  </div>
-                  <div class="col-lg-4 col-md-4">
-                      <div class="d-item-chart-pie">
-                          <div class="d-chart-pie">
-                              <span id="pie2" class="chart" data-percent="50">
-                                  <span class="percent">50</span>
-                              </span>
-                          </div>
-                          <p class="t1">Actividad total</p>
-                          <p class="t2">0/713</p>
-                      </div>
-                  </div>
-                  <div class="col-lg-4 col-md-4">
-                      <div class="d-item-chart-pie">
-                          <div class="d-chart-pie">
-                              <span id="pie3" class="chart" data-percent="29">
-                                  <span class="percent">29</span>
-                              </span>
-                          </div>
-                          <p class="t1">Crecimiento personas</p>
-                          <p class="t2">0/713</p>
-                      </div>
-                  </div>
-              </div>
-          </div>
-        </f7-col>
-      </f7-row>
-      <f7-row style="margin-bottom: 20px;">
-        <f7-col>
-          <div class="d-grafica-oficina">
-              <p class="title-chart-oficina">Importe</p>
+              <p class="title-chart-oficina">Ventas</p>
               <p class="sub-title-chart-oficina mb-4">Estadística de compra</p>
               <canvas height="300" id="chart-importe"></canvas>
           </div>
@@ -126,25 +80,7 @@
       <f7-row style="margin-bottom: 20px;">
         <f7-col>
           <div class="d-grafica-oficina">
-              <p class="title-chart-oficina">Valor negocio</p>
-              <p class="sub-title-chart-oficina mb-4">Estadística de compra</p>
-              <canvas height="300" id="chart-valor-negocio"></canvas>
-          </div>
-        </f7-col>
-      </f7-row>
-      <f7-row style="margin-bottom: 20px;">
-        <f7-col>
-          <div class="d-grafica-oficina">
-              <p class="title-chart-oficina">Incorporaciones personales</p>
-              <p class="sub-title-chart-oficina mb-4">Estadística</p>
-              <canvas height="300" id="chart-incorporaciones"></canvas>
-          </div>
-        </f7-col>
-      </f7-row>
-      <f7-row style="margin-bottom: 20px;">
-        <f7-col>
-          <div class="d-grafica-oficina">
-              <p class="title-chart-oficina">Bonificaciones</p>
+              <p class="title-chart-oficina">Mis afiliados</p>
               <p class="sub-title-chart-oficina mb-4">Estadística</p>
               <canvas height="300" id="chart-bonificaciones"></canvas>
           </div>
@@ -153,30 +89,17 @@
       <f7-row style="margin-bottom: 20px;">
         <f7-col>
           <div class="d-grafica-oficina">
-              <p class="title-chart-oficina">Febrero 2020</p>
+              <p class="title-chart-oficina">Compras</p>
               <p class="sub-title-chart-oficina mb-4">Estadística</p>
               <canvas height="300" id="chart-febrero"></canvas>
-          </div>
-        </f7-col>
-      </f7-row>
-      <f7-row style="margin-bottom: 20px;">
-        <f7-col>
-          <div class="d-grafica-oficina h-100">
-              <p class="title-chart-oficina">Informativo</p>
-              <p class="sub-title-chart-oficina mb-3">Acumulado historico de bonificaciones</p>
-              <p class="acumulado">$3,089,655.<sup>00</sup> </p>
           </div>
         </f7-col>
       </f7-row>
       <f7-row style="margin-bottom: 60px;">
         <f7-col>
           <div class="d-grafica-oficina">
-              <p class="title-chart-oficina">Informativo</p>
-              <p class="sub-title-chart-oficina mb-3">Direcciones importantes</p>  
               <p class="t2">Tu página personal</p>
-              <a href="">http://powergolden.club/link/page</a>
-              <p class="t2 mt-2">Tu tienda virtual</p>
-              <a href="">http://powergolden.club/link/page</a>
+              <f7-button fill @click="urlLanding()" style="color:white; margin-top: 15px" >Copiar URL pagin personal.</f7-button>
           </div>
         </f7-col>
       </f7-row>
@@ -203,24 +126,6 @@
       return {
         planetChartData: {
           type: 'line',
-          data: {
-              datasets: [{
-                  label: 'Importe',
-                  data: [2500, 5000, 7500, 10000, 15000, 20000],
-                  fill: false,
-                  borderColor: 'rgba(54, 162, 235, 0.2)',
-                  backgroundColor: [
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(54, 162, 235, 1)'
-                  ]
-                  
-              }],
-              labels: ['2015', '2016', '2017', '2018', '2019', '2020']
-          },
           options: {
 
               legend: {
@@ -235,41 +140,170 @@
                   }]
               }
           }
-        }
+        },
+        estadisticaPersonas:"",
+        puntosPersonales:"",
+        puntosGrupales:"",
+        compras:"",
+        rollOver:"",
+        mes:"",
+        activas:0,
+        pageId:0
       };
     },
     mounted () {
-      this.createChart('chart-importe', this.planetChartData);
-      this.createChart('chart-puntos', this.planetChartData);
-      this.createChart('chart-valor-negocio', this.planetChartData);
-      this.createChart('chart-incorporaciones', this.planetChartData);
-      this.createChart('chart-bonificaciones', this.planetChartData);
-      this.createChart('chart-febrero', this.planetChartData);
-      var element1 = document.querySelector('#pie1');
-      var element2 = document.querySelector('#pie2');
-      var element3 = document.querySelector('#pie3');
-      const configpie= {
-                size: 180,
-                barColor: '#49B7F3',
-                trackColor: '#F4F4F4',
-                lineWidth: 5,
-                lineCap: 'circle',
-            };
-      new EasyPieChart(element1,configpie);
-      new EasyPieChart(element2,configpie);
-      new EasyPieChart(element3,configpie);
+      const self = this;
+      const app = self.$f7;
+
+      self.graficaVentas();
+      self.graficaPuntos();
+      self.graficaMisafiliados();
+      self.graficaCompras();
+      self.datosInicio();
+
     },
     created() {
-      
+      const self = this;
+      const app = self.$f7;
+
+      self.pageId = localStorage.getItem("user_id");
+
     },
     methods: {
-      createChart(chartId, chartData) {
+      createChart(chartId, chartData, labels, values) {
+        var dataGrafica = {
+              datasets: [{
+                  label: 'Importe',
+                  data: values,
+                  fill: false,
+                  borderColor: 'rgba(54, 162, 235, 0.2)',
+                  backgroundColor: [
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(54, 162, 235, 1)'
+                  ]
+                  
+              }],
+              labels: labels
+          };
         const ctx = document.getElementById(chartId);
         const myChart = new Chart(ctx, {
           type: chartData.type,
-          data: chartData.data,
+          data: dataGrafica,
           options: chartData.options,
         });
+      },
+      graficaVentas(){
+        const self = this;
+        const app = self.$f7;
+
+        var url = localStorage.getItem("url_server");
+        app.request.json(
+          url + "grafica-oficina.php",
+          {user_id:localStorage.getItem("user_id")},
+          function result(data) {
+            var json_data = data;
+            self.createChart('chart-importe', self.planetChartData,json_data.labels,json_data.cants);
+          },
+          function error(xhr, status) {
+          }
+        );
+      },
+        graficaPuntos(){
+        const self = this;
+        const app = self.$f7;
+
+        var url = localStorage.getItem("url_server");
+        app.request.json(
+          url + "grafica-oficina-puntos.php",
+          {user_id:localStorage.getItem("user_id")},
+          function result(data) {
+            var json_data = data;
+            self.createChart('chart-puntos', self.planetChartData,json_data.labels,json_data.cants);
+          },
+          function error(xhr, status) {
+          }
+        );
+      },
+        graficaMisafiliados(){
+        const self = this;
+        const app = self.$f7;
+
+        var url = localStorage.getItem("url_server");
+        app.request.json(
+          url + "grafica-oficina-afiliados.php",
+          {user_id:localStorage.getItem("user_id")},
+          function result(data) {
+            var json_data = data;
+            self.createChart('chart-bonificaciones', self.planetChartData,json_data.labels,json_data.cants);
+          },
+          function error(xhr, status) {
+          }
+        );
+      },
+        graficaCompras(){
+        const self = this;
+        const app = self.$f7;
+
+        var url = localStorage.getItem("url_server");
+        app.request.json(
+          url + "grafica-oficina-ventas.php",
+          {user_id:localStorage.getItem("user_id")},
+          function result(data) {
+            var json_data = data;
+            self.createChart('chart-febrero', self.planetChartData,json_data.labels,json_data.cants);
+          },
+          function error(xhr, status) {
+          }
+        );
+      },
+        datosInicio(){
+        const self = this;
+        const app = self.$f7;
+
+        var url = localStorage.getItem("url_server");
+        app.request.post(
+          url + "datos-oficina-movil.php",
+          {user_id:localStorage.getItem("user_id")},
+          function result(data) {
+            var json_data = JSON.parse(data);
+
+            self.estadisticaPersonas=json_data['clientestotales'];
+            self.puntosPersonales=json_data['puntospersonales'];
+            self.puntosGrupales=json_data['puntosgrupales5nivel'];
+            self.mes=json_data['mes'];
+            self.compras=json_data['ventasmatriz'];
+
+            if(json_data['rollover'] == '1'){
+              self.rollOver = "SI";
+            }else{
+              self.rollOver = "NO"
+            }
+
+            var porcientoActivos = json_data['clientestotales'] * json_data['clientesactivos'];
+
+            if(porcientoActivos == 0){
+              self.activas = 0;
+            }else{
+              self.activas = 100 / porcientoActivos + "%";
+            }
+
+
+            /*self.rollOver=json_data['clientestotales'];*/
+
+            console.log(self.estadisticasOficina);
+            
+          },
+          function error(xhr, status) {
+          }
+        );
+      },
+      urlLanding(){
+        var text = "Hello World!";
+        cordova.plugins.clipboard.copy(text);
       }
     },
   };

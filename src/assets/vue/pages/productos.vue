@@ -28,7 +28,7 @@
                 <div class="row">
                   <f7-col width="40">
                     <div class="d-img-pro">
-                      <img :src="'https://powergolden.com.mx/productos_img/'+item.imagen" alt="">
+                      <img :src="$store.state.url_server+'productos_img/'+item.imagen" alt="">
                     </div>
                   </f7-col>
                   <f7-col width="60">

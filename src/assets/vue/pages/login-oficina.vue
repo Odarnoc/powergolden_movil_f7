@@ -15,14 +15,14 @@
                     <div class="" style="margin-top:2rem;">
                       <div class="floating-label-group">
                         <input type="text" class="form-control input-form" required v-model="email">
-                        <label class="floating-label">Correo de socio</label>
+                        <label class="floating-label">Codigo de socio</label>
                       </div>
                     </div>
 
                     <div class="">
                       <div class="floating-label-group">
                         <input type="password" class="form-control input-form" required v-model="pass">
-                        <label class="floating-label">Contraseña</label>
+                        <label class="floating-label">Pin</label>
                       </div>
                     </div>
                     <br>
@@ -36,15 +36,11 @@
               <div class="d-footer-form">
                 <div class="row">
                   <div class="col-lg-6 col-md-6">
-                    <p class="t3"><a href="/recuperarContrasenia/" class="btn-link">Olvidé mi contraseña</a></p>
-                    <br>
-                  </div>
-                  <div class="col-lg-6 col-md-6">
-                    <p class="t4"><a href="/registro/" class="btn-link">Registrarme como socio</a></p>
-
+                    <p class="t4"><a href="/registroOficina/" class="btn-link">Registrarme como socio</a></p>
                   </div>
                 </div>
               </div>
+
             </div>
           </div>
         </div>
@@ -78,12 +74,12 @@ export default {
       app.preloader.show();
       var url = localStorage.getItem("url_server");
       var datos = {
-        correo: self.email,
-        contra: self.pass
+        email: self.email,
+        pass: self.pass
       };
       console.log(datos);
       app.request.post(
-        url + "sesion-cliente.php",
+        url + "sesion-oficina.php",
         datos,
         function result(data) {
           app.preloader.hide();
@@ -92,12 +88,12 @@ export default {
           if (json_mensaje.error != undefined) {
             app.dialog.alert(json_mensaje.mensaje,'Error');
           } else {
-            if(parseInt(json_mensaje.rol) == 1){
+            if(parseInt(json_mensaje.rol) == 2){
               localStorage.setItem("user_id",parseInt(json_mensaje.id));
               localStorage.setItem("user_rol",parseInt(json_mensaje.rol));
 
               self.$store.state.user_id = localStorage.getItem("user_id");
-              app.views.main.router.navigate('/home/');
+              app.views.main.router.navigate('/dashboardOficina/');
             }else{
               app.dialog.alert('Usuario invalido','Error');
             }

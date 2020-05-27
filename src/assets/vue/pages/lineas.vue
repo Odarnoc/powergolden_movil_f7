@@ -13,7 +13,7 @@
             <seccionlineas></seccionlineas>
         </div>
 
-        <div :style="'background-image: url(https://powergolden.com.mx/'+$store.state.info_linea.imagenlinea+');margin-top:20px;'" class="d-banner-linea valign" data-overlay-dark="3">
+        <div :style="'background-image: url('+$store.state.url_server+$store.state.info_linea.imagenlinea+');margin-top:20px;'" class="d-banner-linea valign" data-overlay-dark="3">
             <span class="t1">LÍNEA</span>
             <span class="t2">{{$store.state.info_linea.nombre}}</span>
         </div>
@@ -26,7 +26,7 @@
                     <div class="row">
                       <f7-col width="40">
                         <div class="d-img-pro">
-                          <img :src="'https://powergolden.com.mx/productos_img/'+item.imagen" alt="">
+                          <img :src="$store.state.url_server+'productos_img/'+item.imagen" alt="">
                         </div>
                       </f7-col>
                       <f7-col width="60">

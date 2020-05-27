@@ -61,7 +61,7 @@ export default {
     //localStorage.setItem("url_server", 'http://feraxconcitaspruebas.000webhostapp.com/');
     localStorage.setItem(
       "url_server",
-      "https://powergolden.com.mx/ajax/"
+      this.$store.state.url_server+"ajax/"
     );
     this.$store.state.user_id = localStorage.getItem("user_id");
     document.addEventListener("backbutton", this.handleBackButton);

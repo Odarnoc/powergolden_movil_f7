@@ -10,7 +10,6 @@
         <f7-row>
           <f7-col>
             <div class="d-info-header">
-              <img class="logo-header" src="static/logo-header.png" alt="">
               <h1 class="t1">El mundo</h1>
               <h1 class="t2">de la Herbolaria</h1>
               <f7-button class="btn-header mt-30" href="#" data-scroll-nav="1" @click="verProds()">Ver productos</f7-button>
@@ -42,7 +41,7 @@
                 <div class="row">
                   <f7-col width="40">
                     <div class="d-img-pro">
-                      <img :src="'https://powergolden.com.mx/productos_img/'+item.imagen" alt="">
+                      <img :src="$store.state.url_server+'productos_img/'+item.imagen" alt="">
                     </div>
                   </f7-col>
                   <f7-col width="60">

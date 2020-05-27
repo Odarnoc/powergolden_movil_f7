@@ -122,6 +122,7 @@
               app.dialog.alert(json_mensaje.mensaje,'Éxito');
             }
             console.log(data);
+            app.views.main.router.navigate('/home/');
           },
           function error(xhr, status) {
             app.preloader.hide();

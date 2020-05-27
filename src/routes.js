@@ -18,6 +18,15 @@ import dashboardOficina from './assets/vue/pages/dashboard-oficina.vue';
 import registroOficina from './assets/vue/pages/registro-oficina.vue';
 import reporteOficina from './assets/vue/pages/reporte-oficina.vue';
 import historialCompras from './assets/vue/pages/historial-compras.vue';
+import datosEnvio from './assets/vue/pages/envio.vue';
+import resumen from './assets/vue/pages/resumen.vue';
+import loginOficina from './assets/vue/pages/login-oficina.vue';
+import ventaDirecta from './assets/vue/pages/venta-directa.vue';
+import folletosElectronicos from './assets/vue/pages/folletos.vue';
+import folletoIndividual from './assets/vue/pages/folleto-individual.vue';
+import metodosPago from './assets/vue/pages/metodos-pago.vue';
+import comprasPaquetes from './assets/vue/pages/paquetes.vue';
+import paqueteIndividual from './assets/vue/pages/paquete-individual.vue';
 
 export default [{
         path: '/home/',
@@ -101,5 +110,41 @@ export default [{
     {
         path: '/historialCompras/',
         component: historialCompras
+    },
+    {
+        path: '/datosEnvio/',
+        component: datosEnvio
+    },
+    {
+        path: '/resumen/',
+        component: resumen
+    },
+    {
+        path: '/loginOficina/',
+        component: loginOficina
+    },
+    {
+        path: '/ventaDirecta/',
+        component: ventaDirecta
+    },
+    {
+        path: '/folletosElectronicos/',
+        component: folletosElectronicos
+    },
+    {
+        path: '/folletoIndividual/',
+        component: folletoIndividual
+    },
+    {
+        path: '/metodosPago/',
+        component: metodosPago
+    },
+    {
+        path: '/comprasPaquetes/',
+        component: comprasPaquetes
+    },
+    {
+        path: '/paqueteIndividual/',
+        component: paqueteIndividual
     },
 ];

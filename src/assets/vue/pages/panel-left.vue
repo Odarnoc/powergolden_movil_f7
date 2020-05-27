@@ -10,7 +10,7 @@
       <f7-list-button style="margin-left:.2rem;" panel-close href="/sucursales/" title="Sucursales"></f7-list-button>
       <f7-list-button v-if="$store.state.user_id == null || $store.state.user_id == undefined || $store.state.user_id == ''" style="margin-left:.2rem;" panel-close href="/login/" title="Mi perfil"></f7-list-button>
       <f7-list-button v-else style="margin-left:.2rem;" panel-close href="/perfil/" title="Mi perfil"></f7-list-button>
-      <f7-list-button v-if="$store.state.user_id == null || $store.state.user_id == undefined || $store.state.user_id == ''" style="margin-left:.2rem;color: #49B7F3;" panel-close href="/login/" title="Socios"></f7-list-button>
+      <f7-list-button v-if="$store.state.user_id == null || $store.state.user_id == undefined || $store.state.user_id == ''" style="margin-left:.2rem;color: #49B7F3;" panel-close href="/loginOficina/" title="Socios"></f7-list-button>
       <f7-list-button v-else style="margin-left:.2rem;color: #49B7F3;" panel-close @click="logout()" title="Cerrar sesión"></f7-list-button>
     </f7-list>
     <hr>
@@ -19,10 +19,8 @@
         <f7-menu-dropdown left>
           <f7-menu-dropdown-item panel-close href="/dashboardOficina/" text="Dashboard"></f7-menu-dropdown-item>
           <f7-menu-dropdown-item panel-close class="pt-1" href="/registroOficina/" text="Registro"></f7-menu-dropdown-item>
-          <f7-menu-dropdown-item class="pt-1" href="#" text="Facturación"></f7-menu-dropdown-item>
-          <f7-menu-dropdown-item class="pt-1" href="#" text="Promociones"></f7-menu-dropdown-item>
-          <f7-menu-dropdown-item class="pt-1" href="#" text="Paquetes"></f7-menu-dropdown-item>
-          <f7-menu-dropdown-item class="pt-1" href="#" text="Folletos electronicos"></f7-menu-dropdown-item>
+          <f7-menu-dropdown-item panel-close class="pt-1" href="/comprasPaquetes/" text="Paquetes"></f7-menu-dropdown-item>
+          <f7-menu-dropdown-item panel-close class="pt-1" href="/folletosElectronicos/" text="Folletos electronicos"></f7-menu-dropdown-item>
           <f7-menu-dropdown-item panel-close class="pt-1" href="/historialCompras/" text="Compras"></f7-menu-dropdown-item>
           <f7-menu-dropdown-item class="pt-1" href="#" text="Mi organización"></f7-menu-dropdown-item>
           <f7-menu-dropdown-item panel-close class="pt-1" href="/reporteOficina/" text="Reportes"></f7-menu-dropdown-item>

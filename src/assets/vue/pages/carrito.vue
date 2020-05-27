@@ -16,6 +16,7 @@
                                 <div class="d-title-cuenta">
                                     <p class="title-cuenta">Carrito</p>
                                     <p class="small-text-cuenta">Productos en tu carrito de compras <b id="cantProds">({{carrito.length}})</b></p>
+                                    <p class="small-text-cuenta">En la compra de <b>{{oferta}}</b> productos obten de regalo <b>{{gratis}}</b> mas.</p>
                                 </div>
                             </div>
 
@@ -31,7 +32,7 @@
                                         <f7-row class="row">
                                             <f7-col width="30">
                                                 <div class="d-img-carrito">
-                                                    <img :src="'https://powergolden.com.mx/productos_img/'+item.imagen">
+                                                    <img :src="$store.state.url_server+'productos_img/'+item.imagen">
                                                 </div>
                                             </f7-col>
                                             <f7-col width="70">
@@ -59,17 +60,14 @@
                                     </div>
                                     
                                 </div>
-
                             </div>
-
+                            <p class="small-text-cuenta" v-if="ofertadisponible">Agrega <b>{{gratis}}</b> de regalo a tu compra.</p>
                         </div>
-
                     </div>
                 </div>
 
       </div>
     </div>
-
     </f7-block>
 
     <div class="navbar-bottom" style="bottom: 55px;">
@@ -80,7 +78,7 @@
                     <p class="t2" id="total2">${{total}}</p>
                 </f7-col>
                 <f7-col width="50">
-                    <f7-button large style="background-color: #49B7F3;color:#fff;" @click="confirmar()">Continuar</f7-button>
+                    <f7-button v-if="!ofertadisponible" large style="background-color: #49B7F3;color:#fff;" @click="confirmar()">Continuar</f7-button>
                 </f7-col>
             </f7-row>
         </div>
@@ -90,38 +88,84 @@
   </f7-page>
 </template>
 <script>
-  import topmenu from "./menu-bar";
-  import toolbar from "./toolbar";
-  import seccionbusqueda from "./seccion-busqueda";
-  import seccionlineas from "./seccion-lineas";
-  export default {
-    components: {
-      topmenu,
-      toolbar,
-      seccionbusqueda,
-      seccionlineas,
-    },
-    data() {
-      return {
-          carrito:[],
-          total:0,
-      };
+    import topmenu from "./menu-bar";
+    import toolbar from "./toolbar";
+    import seccionbusqueda from "./seccion-busqueda";
+    import seccionlineas from "./seccion-lineas";
+    export default {
+        components: {
+        topmenu,
+        toolbar,
+        seccionbusqueda,
+        seccionlineas,
+        },
+        data() {
+        return {
+            carrito:[],
+            total:0,
+            descuento:0,
+            gratis:0,
+            cCarrito:0,
+            ofertadisponible:true,
+            oferta:0,
+        };
     },
     created() {
         const self = this;
         const app = self.$f7;
         self.carrito = JSON.parse(localStorage.getItem('carrito'));
-        self.generarTotal();
+        self.promocion();
     },
     methods: {
+        promocion(){
+            const self = this;
+            const app = self.$f7;
+            
+            var url = localStorage.getItem("url_server");
+            app.request.get(
+                url + "infor_promo.php",
+                function result(data) {
+                app.preloader.hide();
+                var json_mensaje = JSON.parse(data);
+                self.gratis = json_mensaje.cantidad;
+                self.oferta = json_mensaje.desde;
+                self.generarTotal();
+                },
+            );
+        },
         generarTotal(){
             const self = this;
             const app = self.$f7;
             self.total=0;
+            self.descuento=0;
+            var cantidadxproducto = 0;
+            var sumatorio = parseInt(self.oferta) + parseInt(self.gratis);
             self.carrito.forEach(function(item, index) {
                 var totalTemp = parseFloat(item.precio) * parseInt(item.cant);
                 self.total += totalTemp;
+                var conteop = 0;
+                var restarc = 0;
+                cantidadxproducto += item.cant;
+                for (var i = cantidadxproducto; i > 0; i--) {
+                    conteop++;
+                    console.log(cantidadxproducto);
+                    if (conteop == sumatorio) {
+                        self.total -= parseInt(item.precio) * parseInt(self.gratis);
+                        restarc += sumatorio;
+                        conteop = 0;
+                        self.descuento += parseInt(item.precio) * parseInt(self.gratis);
+                        console.log(self.descuento);
+                    }
+                }
+                cantidadxproducto -= restarc;
             });
+            if (cantidadxproducto >= self.oferta && cantidadxproducto < sumatorio) {
+                self.ofertadisponible = true;
+            } else {
+                self.ofertadisponible = false;
+            }
+            localStorage.setItem("descuento", self.descuento);
+            localStorage.setItem("total", self.total);
         },
         eliminar(index){
             const self = this;
@@ -153,27 +197,7 @@
         confirmar(){
             const self = this;
             const app = self.$f7;
-            app.preloader.show();
-            var url = localStorage.getItem("url_server");
-            app.request.post(
-                url + "realizarCompra.php",
-                { carrito: self.carrito, total: self.total },
-                function result(data) {
-                    app.preloader.hide();
-                    var json_mensaje = JSON.parse(data);
-                    if (json_mensaje.error != undefined) {
-                        app.dialog.alert(json_mensaje.mensaje,'Error');
-                    } else {
-                        app.dialog.alert(json_mensaje.mensaje,'Éxito');
-                        self.carrito = [];
-                        localStorage.setItem('carrito', JSON.stringify(self.carrito));
-                        self.generarTotal();
-                    }
-                },
-                function error(xhr, status) {
-                    app.preloader.hide();
-                }
-            );
+            app.views.main.router.navigate('/datosEnvio/'); 
         },
     },
   };
