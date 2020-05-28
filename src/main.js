@@ -2,12 +2,9 @@
 import Vue from 'vue';
 
 // Import Framework7
-import Framework7 from 'framework7/framework7.esm.bundle.js';
+import Framework7 from 'framework7/framework7.esm.bundle';
 
-//import Dom7
-import Dom7 from 'dom7/dist/dom7.js';
-
-// Import Framework7 Vue
+// Import F7 Vue Plugin
 import Framework7Vue from 'framework7-vue/framework7-vue.esm.bundle.js';
 
 // Import F7 Style
@@ -34,37 +31,40 @@ import AppHelper from './assets/css/helper.css'
 import AppMenuMovil from './assets/css/menu-movil.css'
 import AppResponsive from './assets/css/responsive.css'
 
+// Import App Custom Styles
+// import AppStyles from './assets/sass/main.scss'
+
 // Import App Component
 import app from './main.vue';
 
 // Import Vuex Storage
 import store from './assets/vuex/storage.js';
 
-
 // Different F7-Vue plugin initialization with f7 v3.0
 Framework7.use(Framework7Vue);
-var $$ = Dom7;
-
 
 // Init Vue App
 export default new Vue({
-    // Root Element
-    el: '#app',
-    store,
-    render: c => c('app'),
-    components: {
-        app
-    },
-    mounted() {
-        window.addEventListener('load', () => {
-            // run after everything is in-place
-            FastClick.attach(document.body);
-        });
-    },
+  // Root Element
+  el: '#app',
+  store,
+  render: c => c('app'),
+  components: {
+    app
+  },
+  mounted() {
+    window.addEventListener('load', () => {
+      // run after everything is in-place
+      FastClick.attach(document.body);
+    });
+  }
 });
 
 document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
-    cordova.plugins.firebase.messaging.subscribe("ventas");
+  cordova.plugins.firebase.messaging.requestPermission().then(function() {
+    console.log("Push messaging is allowed");
+  });
+  cordova.plugins.firebase.messaging.subscribe("ventas");
 }

@@ -28,123 +28,124 @@ import metodosPago from './assets/vue/pages/metodos-pago.vue';
 import comprasPaquetes from './assets/vue/pages/paquetes.vue';
 import paqueteIndividual from './assets/vue/pages/paquete-individual.vue';
 
-export default [{
-        path: '/home/',
-        component: Home,
-        options: {
-            clearPreviousHistory: true,
-        }
-    },
-    {
-        path: '/panel-left/',
-        component: PanelLeftPage
-    },
-    {
-        path: '/productoIndividual/',
-        component: productoIndividual
-    },
-    {
-        path: '/productos/',
-        component: Productos
-    },
-    {
-        path: '/lineas/',
-        component: Lineas
-    },
-    {
-        path: '/sobrePowerGolden/',
-        component: sobrePowerGolden
-    },
-    {
-        path: '/contacto/',
-        component: contacto
-    },
-    {
-        path: '/sucursales/',
-        component: sucursales
-    },
-    {
-        path: '/perfil/',
-        component: perfil
-    },
-    {
-        path: '/carrito/',
-        component: carrito
-    },
-    {
-        path: '/login/',
-        component: login
-    },
-    {
-        path: '/registro/',
-        component: registro
-    },
-    {
-        path: '/recuperarContrasenia/',
-        component: recuperarContrasenia
-    },
-    {
-        path: '/pinContrasenia/',
-        component: pinContrasenia
-    },
-    {
-        path: '/confirmarContrasenia/',
-        component: confirmarContrasenia
-    },
-    {
-        path: '/contraseniaCambiada/',
-        component: contraseniaCambiada
-    },
-    {
-        path: '/dashboardOficina/',
-        component: dashboardOficina
-    },
-    {
-        path: '/registroOficina/',
-        component: registroOficina
-    },
-    {
-        path: '/reporteOficina/',
-        component: reporteOficina
-    },
-    {
-        path: '/historialCompras/',
-        component: historialCompras
-    },
-    {
-        path: '/datosEnvio/',
-        component: datosEnvio
-    },
-    {
-        path: '/resumen/',
-        component: resumen
-    },
-    {
-        path: '/loginOficina/',
-        component: loginOficina
-    },
-    {
-        path: '/ventaDirecta/',
-        component: ventaDirecta
-    },
-    {
-        path: '/folletosElectronicos/',
-        component: folletosElectronicos
-    },
-    {
-        path: '/folletoIndividual/',
-        component: folletoIndividual
-    },
-    {
-        path: '/metodosPago/',
-        component: metodosPago
-    },
-    {
-        path: '/comprasPaquetes/',
-        component: comprasPaquetes
-    },
-    {
-        path: '/paqueteIndividual/',
-        component: paqueteIndividual
-    },
+export default [
+  {
+    path: '/home/',
+    component: Home,
+    options: {
+        clearPreviousHistory: true,
+    }
+  },
+  {
+    path: '/panel-left/',
+    component: PanelLeftPage
+  },
+  {
+      path: '/productoIndividual/',
+      component: productoIndividual
+  },
+  {
+      path: '/productos/',
+      component: Productos
+  },
+  {
+      path: '/lineas/',
+      component: Lineas
+  },
+  {
+      path: '/sobrePowerGolden/',
+      component: sobrePowerGolden
+  },
+  {
+      path: '/contacto/',
+      component: contacto
+  },
+  {
+      path: '/sucursales/',
+      component: sucursales
+  },
+  {
+      path: '/perfil/',
+      component: perfil
+  },
+  {
+      path: '/carrito/',
+      component: carrito
+  },
+  {
+      path: '/login/',
+      component: login
+  },
+  {
+      path: '/registro/',
+      component: registro
+  },
+  {
+      path: '/recuperarContrasenia/',
+      component: recuperarContrasenia
+  },
+  {
+      path: '/pinContrasenia/',
+      component: pinContrasenia
+  },
+  {
+      path: '/confirmarContrasenia/',
+      component: confirmarContrasenia
+  },
+  {
+      path: '/contraseniaCambiada/',
+      component: contraseniaCambiada
+  },
+  {
+      path: '/dashboardOficina/',
+      component: dashboardOficina
+  },
+  {
+      path: '/registroOficina/',
+      component: registroOficina
+  },
+  {
+      path: '/reporteOficina/',
+      component: reporteOficina
+  },
+  {
+      path: '/historialCompras/',
+      component: historialCompras
+  },
+  {
+      path: '/datosEnvio/',
+      component: datosEnvio
+  },
+  {
+      path: '/resumen/',
+      component: resumen
+  },
+  {
+      path: '/loginOficina/',
+      component: loginOficina
+  },
+  {
+      path: '/ventaDirecta/',
+      component: ventaDirecta
+  },
+  {
+      path: '/folletosElectronicos/',
+      component: folletosElectronicos
+  },
+  {
+      path: '/folletoIndividual/',
+      component: folletoIndividual
+  },
+  {
+      path: '/metodosPago/',
+      component: metodosPago
+  },
+  {
+      path: '/comprasPaquetes/',
+      component: comprasPaquetes
+  },
+  {
+      path: '/paqueteIndividual/',
+      component: paqueteIndividual
+  },
 ];
