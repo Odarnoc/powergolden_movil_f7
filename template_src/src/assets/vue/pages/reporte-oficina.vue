@@ -160,7 +160,7 @@ export default {
       if(self.fechaInicio != "" && self.fechaFin != ""){
         urlreporte+="&inicio="+self.fechaInicio+"&fin="+self.fechaFin;
       }
-      window.open(encodeURI(urlreporte), '_blank', 'location=yes');
+      window.open(encodeURI(urlreporte), '_system');
     },
     infoCalendario(e){
       const self = this;
