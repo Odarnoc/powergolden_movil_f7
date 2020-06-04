@@ -16,7 +16,8 @@ export default new Vuex.Store({
         resetCode: '',
         folleto_id: '',
         paquete_id: '',
-        url_server: 'https://powergolden.fxsoftware.mx/',
+        paquete_cantidad: '',
+        url_server: 'http://34.72.37.1/powergolden/',
     },
 
     actions: {

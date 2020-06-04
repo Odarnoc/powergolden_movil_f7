@@ -13,17 +13,7 @@
             </div>
         </div>
 
-        <!--<div class="row">
-            <div class="col-lg-6 col-md-6 offset-lg-3 offset-md-3">
-                <div class="d-listo">
-                    <img src="images/icon-search-blue.svg" alt="">
-                    <p class="t1">¡Sin resultados!</p>
-                    <p class="t2">No se encontraron paquetes disponibles</p>
-                </div>
-            </div> -->
-
-
-                <f7-row v-bind:key="(item, index)" v-for="(item, index) in resultado">
+                <f7-row style="margin-top: 16px" v-bind:key="(item, index)" v-for="(item, index) in resultado">
                     <f7-col>
                         <div class="d-item-pro h-100" style="padding-bottom: 1rem;">
                             <div class="row">
@@ -38,7 +28,7 @@
                                         <p class="t4 two-lines">Total de productos: <b>{{item.productos}}</b></p>
                                     </div>
                                     <div style="margin-top: 10px">
-                                        <f7-button class="btn-blue" @click="comprarPaquete(item.id)" role="button">Comprar</f7-button>
+                                        <f7-button class="btn-blue" @click="comprarPaquete(item.id,item.productos)" role="button" style="margin-right: 20px">Comprar</f7-button>
                                     </div>
                                 </f7-col>
                             </div>
@@ -91,12 +81,13 @@
         },
       );
     },
-    comprarPaquete(id){
+    comprarPaquete(id,cantidad){
         const self = this;
         const app = self.$f7;
         console.log(id);
         self.$store.state.paquete_id = id;
-        app.views.main.router.navigate('/paqueteIndividual/');
+        self.$store.state.paquete_cantidad = cantidad,
+        app.views.main.router.navigate('/productosPaquetes/');
     }
     },
   };

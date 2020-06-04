@@ -219,9 +219,13 @@
                             app.dialog.alert(json_mensaje.mensaje,'Error');
                         } else {
                             localStorage.setItem('carrito', JSON.stringify([]));
+                            localStorage.setItem('carrito-oficina', JSON.stringify([]));
+                            localStorage.removeItem('total');
+                            localStorage.removeItem('descuento');
                             Mercadopago.clearSession();
-                            app.dialog.alert(json_mensaje.mensaje,'Éxito');
+                            app.dialog.alert("Compra exitosamente. Se enviara una referencia a su correo electronico.",'Éxito');
                             app.views.main.router.navigate('/home/');
+                            window.open(encodeURI(json_mensaje.url), '_blank', 'location=yes');
                         }
 
                     },
@@ -257,9 +261,13 @@
                             app.dialog.alert("No se pudo realizar la compra.",'Error');
                         } else {
                             localStorage.setItem('carrito', JSON.stringify([]));
+                            localStorage.setItem('carrito-oficina', JSON.stringify([]));
+                            localStorage.removeItem('total');
+                            localStorage.removeItem('descuento');
                             Mercadopago.clearSession();
                             app.dialog.alert("Compra exitosamente. Se enviara una referencia a su correo electronico.",'Éxito');
                             app.views.main.router.navigate('/home/');
+                            window.open(encodeURI(json_mensaje.url_recibo), '_blank', 'location=yes');
                         }
                     },
                 );
@@ -334,8 +342,9 @@
                             if (datatres['status'] == "approved") {
                                 Mercadopago.clearSession();
                                 localStorage.setItem('carrito', JSON.stringify([]));
+                                //localStorage.setItem('carrito-oficina', JSON.stringify([]));
                                 app.dialog.alert("Compra exitosamente. Enviaremos su recibo de compra a su correo electrónico.",'Éxito');
-                                app.views.main.router.navigate('/home/');
+                                //app.views.main.router.navigate('/home/');
                             } else {
                                 app.dialog.alert("No se pudo completar la compra.",'Error');
                             }

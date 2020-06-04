@@ -27,7 +27,7 @@
                                             <f7-col width="100%">
                                                 <div class="floating-label-group">
                                                     <label>Datos de envio.</label>
-                                                    <p class="small-text-cuenta">{{direccion}}, {{colonia}}, {{ciudad}}, {{estado}}, C.P.{{codigo}}</p>
+                                                    <p class="small-text-cuenta">{{direccion}}, {{colonia}}, {{ciudad}}, {{estado}}, C.P.{{codigo}}, {{pais}}.</p>
                                                 </div>
                                             </f7-col>
                                         </f7-row>
@@ -118,6 +118,7 @@
             colonia: "",
             estado: "",
             codigo:"",
+            pais:"",
             total:0,
             descuento:0,
             envio:300,
@@ -134,6 +135,7 @@
         self.colonia = localStorage.getItem('colonia');
         self.estado = localStorage.getItem('estado');
         self.codigo = localStorage.getItem('codigop');
+        self.pais = localStorage.getItem('pais');
 
         self.total = parseInt(localStorage.getItem('total'))+self.envio;
         self.descuento = localStorage.getItem('descuento');

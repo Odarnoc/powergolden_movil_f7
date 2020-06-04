@@ -46,6 +46,7 @@
     "@fortawesome/fontawesome-free": "^5.11.1",
     "chart.js": "^2.9.3",
     "cordova-android": "^8.1.0",
+    "cordova-browser": "^6.0.0",
     "cordova-plugin-androidx": "2.0.0",
     "cordova-plugin-androidx-adapter": "1.1.1",
     "cordova-plugin-firebase-messaging": "4.0.1",
@@ -74,7 +75,8 @@
       }
     },
     "platforms": [
-      "android"
+      "android",
+      "browser"
     ]
   }
 }
