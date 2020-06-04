@@ -218,14 +218,16 @@
                         if (json_mensaje.error != undefined) {
                             app.dialog.alert(json_mensaje.mensaje,'Error');
                         } else {
-                            localStorage.setItem('carrito', JSON.stringify([]));
-                            localStorage.setItem('carrito-oficina', JSON.stringify([]));
-                            localStorage.removeItem('total');
-                            localStorage.removeItem('descuento');
+                            //localStorage.setItem('carrito', JSON.stringify([]));
+                            //localStorage.setItem('carrito-oficina', JSON.stringify([]));
+                            //localStorage.removeItem('total');
+                            //localStorage.removeItem('descuento');
+                            console.log(json_mensaje.url);
+                            
                             Mercadopago.clearSession();
                             app.dialog.alert("Compra exitosamente. Se enviara una referencia a su correo electronico.",'Éxito');
-                            app.views.main.router.navigate('/home/');
-                            window.open(encodeURI(json_mensaje.url), '_blank', 'location=yes');
+                            //app.views.main.router.navigate('/home/');
+                            window.open(encodeURI(json_mensaje.url), '_system', 'location=yes');
                         }
 
                     },
@@ -260,14 +262,14 @@
                         if (json_mensaje.error != undefined) {
                             app.dialog.alert("No se pudo realizar la compra.",'Error');
                         } else {
-                            localStorage.setItem('carrito', JSON.stringify([]));
-                            localStorage.setItem('carrito-oficina', JSON.stringify([]));
-                            localStorage.removeItem('total');
-                            localStorage.removeItem('descuento');
+                            //localStorage.setItem('carrito', JSON.stringify([]));
+                            //localStorage.setItem('carrito-oficina', JSON.stringify([]));
+                            //localStorage.removeItem('total');
+                            //localStorage.removeItem('descuento');
                             Mercadopago.clearSession();
                             app.dialog.alert("Compra exitosamente. Se enviara una referencia a su correo electronico.",'Éxito');
-                            app.views.main.router.navigate('/home/');
-                            window.open(encodeURI(json_mensaje.url_recibo), '_blank', 'location=yes');
+                            //app.views.main.router.navigate('/home/');
+                            window.open(encodeURI(json_mensaje.url_recibo), '_system', 'location=yes');
                         }
                     },
                 );
