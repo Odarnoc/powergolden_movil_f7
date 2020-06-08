@@ -66,6 +66,7 @@ export default {
         this.$store.state.url_server+"ajax/"
         );
         this.$store.state.user_id = localStorage.getItem("user_id");
+        this.$store.state.user_rol = localStorage.getItem("user_rol");
         document.addEventListener("backbutton", this.handleBackButton);
     }
 }

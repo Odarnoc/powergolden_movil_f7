@@ -29,6 +29,7 @@ import comprasPaquetes from './assets/vue/pages/paquetes.vue';
 import productosPaquetes from './assets/vue/pages/productos-paquetes.vue';
 import direccionOficina from './assets/vue/pages/direccion-oficina.vue';
 import resumenOficina from './assets/vue/pages/resumen-oficina.vue';
+import rastreoPedidos from './assets/vue/pages/rastreo.vue';
 
 export default [{
         path: '/home/',
@@ -156,5 +157,9 @@ export default [{
     {
         path: '/resumenOficina/',
         component: resumenOficina
+    },
+    {
+        path: '/rastreoPedidos/',
+        component: rastreoPedidos
     },
 ];

@@ -97,6 +97,7 @@ export default {
               localStorage.setItem("user_rol",parseInt(json_mensaje.rol));
 
               self.$store.state.user_id = localStorage.getItem("user_id");
+              self.$store.state.user_rol = localStorage.getItem("user_rol");
               app.views.main.router.navigate('/home/');
             }else{
               app.dialog.alert('Usuario invalido','Error');

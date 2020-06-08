@@ -6,6 +6,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         user_id: '',
+        user_rol: '',
         pin: '',
         prod_id: '',
         busqueda: '',
@@ -17,7 +18,7 @@ export default new Vuex.Store({
         folleto_id: '',
         paquete_id: '',
         paquete_cantidad: '',
-        url_server: 'http://34.72.37.1/powergolden/',
+        url_server: 'http://localhost/powergolden/',
     },
 
     actions: {
