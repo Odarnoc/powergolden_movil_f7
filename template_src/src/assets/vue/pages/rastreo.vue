@@ -22,28 +22,18 @@
           </f7-col>
         </f7-row>
 
-        <f7-row style="margin-bottom: 20px">
-          <f7-col v-if="status == 'Recolección pendiente'">
-            <h5>Detalles del pedido!!</h5>
-              <div style="text-align:center; margin-top: 20px">
-                <h6>{{status}}.</h6>
-                <i class="fas fa-dolly-flatbed"></i>
+        <f7-row style="margin-bottom: 20px" v-if="banderaDetalles">
+          <f7-col>
+            <h5>Detalles del pedido.</h5>
+            <h6 style="margin-top:10px">Pedido numero: <b style="color:#49B7F3">{{id}}</b></h6>
+            <p style="margin-top: 10px">Fecha de creacion: <b>{{creacion}}</b></p>
+              <div style="text-align:center; margin-top: 30px">
+                <h6><b>{{status}}.</b></h6>
+                <i v-bind:class="icono" style="color: #49B7F3; margin-top: 15px; font-size: 35px"></i>
               </div>
-          </f7-col>
-
-          <f7-col v-if="status == 'Preparando envio'">
-            <li style="color:blue; font:30px"></li>
-            <i class="fas fa-boxes"></i>
-          </f7-col>
-
-          <f7-col v-if="status == 'En tránsito'">
-            <li style="color:blue; font:30px"></li>
-            <i class="fas fa-shipping-fast"></i>
-          </f7-col>
-
-          <f7-col v-if="status == 'Entregado'">
-            <li style="color:blue; font:30px"></li>
-            <i class="fas fa-box-open"></i>
+            <f7-col width="100" style="margin-top: 80px">
+              <f7-button fill large class="mt-30" style="background-color: #49B7F3;" @click="nuevoEnvio()">Rastrear otro pedido.</f7-button>
+            </f7-col>
           </f7-col>
 
         </f7-row>
@@ -69,7 +59,9 @@ export default {
       id:"",
       status:"",
       creacion:"",
-      bandera:true
+      banderaDetalles:false,
+      bandera:true,
+      icono:""
     };
   },
   created() {
@@ -99,6 +91,8 @@ export default {
               self.status = json_data['status'];
               self.creacion = json_data['created'];
               self.bandera = false;
+              self.banderaDetalles = true;
+              self.icono = 'fas fa-dolly-flatbed';
             }
 
             if(json_data['status'] == 'Preparando envio'){
@@ -106,6 +100,8 @@ export default {
               self.status = json_data['status'];
               self.creacion = json_data['created'];
               self.bandera = false;
+              self.banderaDetalles = true;
+              self.icono = 'fas fa-boxes';
             }
 
             if(json_data['status'] == 'En tránsito'){
@@ -113,6 +109,8 @@ export default {
               self.status = json_data['status'];
               self.creacion = json_data['created'];
               self.bandera = false;
+              self.banderaDetalles = true;
+              self.icono = 'fas fa-shipping-fast';
             }
 
             if(json_data['status'] == 'Entregado'){
@@ -120,6 +118,8 @@ export default {
               self.status = json_data['status'];
               self.creacion = json_data['created'];
               self.bandera = false;
+              self.banderaDetalles = true;
+              self.icono = 'fas fa-box-open';
             }
 
             if(json_data == 'error'){
@@ -132,6 +132,13 @@ export default {
         app.dialog.alert('Ingresa un numero de rastreo.','Error');
       }
       },
+      nuevoEnvio(){
+        const self = this;
+        const app = self.$f7;
+
+        self.banderaDetalles = false;
+        self.bandera = true;
+      }
   }
 };
 </script>
