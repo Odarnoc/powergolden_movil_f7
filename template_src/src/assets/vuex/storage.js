@@ -18,7 +18,7 @@ export default new Vuex.Store({
         folleto_id: '',
         paquete_id: '',
         paquete_cantidad: '',
-        url_server: 'http://localhost/powergolden/',
+        url_server: 'http://34.72.37.1/powergolden/',
     },
 
     actions: {

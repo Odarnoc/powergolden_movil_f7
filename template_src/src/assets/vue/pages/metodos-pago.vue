@@ -151,6 +151,45 @@ import topmenu from "./menu-bar";
 import toolbar from "./toolbar";
 import seccionbusqueda from "./seccion-busqueda";
 import seccionlineas from "./seccion-lineas";
+
+function setPaymentMethod(status, response) {
+
+      console.log(status);
+      console.log(response);
+
+      if (status == 200) {
+        let paymentMethodId = response[0].id;
+        let element = document.getElementById("payment_method_id");
+        element.value = paymentMethodId;
+        getInstallments();
+      } else {
+        alert(`payment method info error: ${response}`);
+      }
+    }
+
+    function getInstallments() {
+      window.Mercadopago.getInstallments(
+        {
+          payment_method_id: document.getElementById("payment_method_id").value,
+          amount: parseFloat(
+            document.getElementById("transaction_amount").value
+          )
+        },
+        function(status, response) {
+          if (status == 200) {
+            document.getElementById("installments").options.length = 0;
+            response[0].payer_costs.forEach(installment => {
+              let opt = document.createElement("option");
+              opt.text = installment.recommended_message;
+              opt.value = installment.installments;
+              document.getElementById("installments").appendChild(opt);
+            });
+          } else {
+            alert(`installments method info error: ${response}`);
+          }
+        }
+      );
+    }
 export default {
   components: {
     topmenu,
@@ -192,28 +231,6 @@ export default {
   mounted() {
     const self = this;
     const app = self.$f7;
-
-    let recaptchaScript = document.createElement("script");
-    recaptchaScript.setAttribute(
-      "src",
-      "https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"
-    );
-    document.head.appendChild(recaptchaScript);
-    recaptchaScript.setAttribute(
-      "src",
-      "https://openpay.s3.amazonaws.com/openpay.v1.min.js"
-    );
-    document.head.appendChild(recaptchaScript);
-    recaptchaScript.setAttribute(
-      "src",
-      "https://openpay.s3.amazonaws.com/openpay-data.v1.min.js"
-    );
-    document.head.appendChild(recaptchaScript);
-    recaptchaScript.setAttribute(
-      "src",
-      " https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"
-    );
-    document.head.appendChild(recaptchaScript);
   },
   methods: {
     guessPaymentMethod() {
@@ -221,7 +238,7 @@ export default {
       const app = self.$f7;
 
       let cardnumber = document.getElementById("cardNumber").value;
-      console.log(document.getElementById("cardNumber").value);
+      console.log(window.Mercadopago);
 
       if (cardnumber.length >= 6) {
         let bin = cardnumber.substring(0, 6);
@@ -229,7 +246,7 @@ export default {
           {
             bin: bin
           },
-          self.setPaymentMethod()
+          setPaymentMethod
         );
       }
     },
@@ -343,54 +360,14 @@ export default {
       );
     },
 
-    setPaymentMethod(status, response) {
-      const self = this;
-      const app = self.$f7;
-
-      console.log(status);
-      console.log(response);
-
-      if (status == 200) {
-        let paymentMethodId = response[0].id;
-        let element = document.getElementById("payment_method_id");
-        element.value = paymentMethodId;
-        self.getInstallments();
-      } else {
-        alert(`payment method info error: ${response}`);
-      }
-    },
-
-    getInstallments() {
-      window.Mercadopago.getInstallments(
-        {
-          payment_method_id: document.getElementById("payment_method_id").value,
-          amount: parseFloat(
-            document.getElementById("transaction_amount").value
-          )
-        },
-        function(status, response) {
-          if (status == 200) {
-            document.getElementById("installments").options.length = 0;
-            response[0].payer_costs.forEach(installment => {
-              let opt = document.createElement("option");
-              opt.text = installment.recommended_message;
-              opt.value = installment.installments;
-              document.getElementById("installments").appendChild(opt);
-            });
-          } else {
-            alert(`installments method info error: ${response}`);
-          }
-        }
-      );
-    },
-
     sdkResponseHandler(status, response) {
+        const self = this;
+        const app = self.$f7;
       if (status != 200 && status != 201) {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Verifica los datos de la tarjeta"
-        });
+          app.dialog.alert(
+              "Verifica los datos de la tarjeta",
+              "Oops..."
+            );
       } else {
         $("#token").val(response.id);
         $("#transaction_amount").val(10);
