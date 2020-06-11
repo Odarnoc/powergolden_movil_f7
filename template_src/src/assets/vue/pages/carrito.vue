@@ -114,6 +114,9 @@
         const self = this;
         const app = self.$f7;
         self.carrito = JSON.parse(localStorage.getItem('carrito'));
+        if (self.carrito == null) {
+            self.carrito = [];
+        }
         self.promocion();
     },
     methods: {

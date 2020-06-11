@@ -24,9 +24,15 @@
               <p style="margin-top: 10px;" class="t2 one-line" >{{descripcion}}</p>
             </div>
           </f7-col>
-          <a class="btn btn-blue" download :href="$store.state.url_server+'images/folletos/'+imagen" role="button"><i style="margin-right:2px" class="fas fa-arrow-circle-down"></i>Descargar imagen de folleto.</a>
-          <a class="btn btn-blue" download :href="$store.state.url_server+'images/folletos/documentos/'+imagen" role="button"><i style="margin-right:2px" class="fas fa-arrow-circle-down"></i>Descargar PDF de folleto.</a>
-        </f7-row>
+          </f7-row>
+
+          <f7-row style="margin-top: 15px">
+            <a class="btn btn-blue" @click=" dervargaImagen()" role="button"><i class="fas fa-arrow-circle-down"></i>Ver imagen de folleto.</a>
+          </f7-row>
+          <f7-row style="margin-top: 15px">
+            <a class="btn btn-blue" @click="decargaFolleto()" role="button"><i class="fas fa-arrow-circle-down"></i>Descargar PDF de folleto.</a>
+          </f7-row>
+        
     </f7-block>
 
     <toolbar seleccion="1"></toolbar>
@@ -80,6 +86,45 @@ export default {
           }
         );
       },
+      decargaFolleto(){
+        const self = this;
+        const app = self.$f7;
+
+      var url = self.$store.state.url_server;
+      var urlfolleto = url+"/images/folletos/documentos/"+self.pdf;
+      window.open(encodeURI(urlfolleto), '_system');
+      },
+      dervargaImagen(){
+        const self = this;
+        const app = self.$f7;
+
+      var url = self.$store.state.url_server;
+      var urlfolleto = url+"/images/folletos/"+self.imagen;
+      window.open(encodeURI(urlfolleto), '_system');
+
+      /*var fileTransfer = new FileTransfer();
+      var url = self.$store.state.url_server;
+      var urlfolleto = url+"/images/folletos/documentos/"+self.pdf;
+        // !! Asume filePath es una ruta válida en el dispositivo var fileTransfer = new FileTransfer();
+        var uri = encodeURI (url+"/images/folletos/"+self.imagen);
+        var fileURL = cordova.file.dataDirectory + self.imagen;
+
+        fileTransfer.download(
+            uri,
+            fileURL,
+            function(entry) {
+                console.log("download complete: " + entry.toURL());
+            },
+            function(error) {
+                console.log("download error source " + error.source);
+                console.log("download error target " + error.target);
+                console.log("download error code" + error.code);
+            },
+            false,
+            {
+            }
+        );*/
+      }
   }
 };
 </script>

@@ -35,13 +35,12 @@
 
               <div class="d-footer-form">
                 <div class="row">
-                  <div class="col-lg-6 col-md-6">
+                  <!--<div class="col-lg-6 col-md-6">
                     <p class="t3"><a href="/recuperarContrasenia/" class="btn-link">Olvidé mi contraseña</a></p>
                     <br>
-                  </div>
+                  </div>-->
                   <div class="col-lg-6 col-md-6">
                     <p class="t4"><a href="/registro/" class="btn-link">Registrarme como socio</a></p>
-
                   </div>
                 </div>
               </div>

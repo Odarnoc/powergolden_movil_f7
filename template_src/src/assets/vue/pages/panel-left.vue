@@ -54,9 +54,11 @@
       logout(){
         const self = this;
         const app = self.$f7;
-
+        
+        localStorage.clear();
         localStorage.setItem("user_id",'');
         localStorage.setItem("user_rol",'');
+        window.location.reload(true);
       },
     },
   };

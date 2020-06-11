@@ -2,7 +2,7 @@
   <div class="navbar-bottom" id="menu-bottom-movil">
       <a class="item" id="inicio-active" href="/home/" :class="homeActivo"><img src="static/icon-home.svg" alt=""></a>
       <a class="item" v-if="$store.state.user_id == null || $store.state.user_id == undefined || $store.state.user_id == ''" id="carrito-active" href="/login/" :class="carActivo"><img src="static/icon-bag-menu.svg" alt=""></a>
-      <a class="item" v-else id="carrito-active" href="/carrito/" :class="carActivo"><img src="static/icon-bag-menu.svg" alt=""></a>
+      <a class="item" v-else id="carrito-active" :href="$store.state.user_rol == 2?'/comprasPaquetes/':'/carrito/'" :class="carActivo"><img src="static/icon-bag-menu.svg" alt=""></a>
       <a class="item" v-if="$store.state.user_id == null || $store.state.user_id == undefined || $store.state.user_id == ''" id="perfil-active" href="/login/" :class="perfilActivo"><img src="static/icon-user-menu.svg" alt=""></a>
       <a class="item" v-else id="perfil-active" href="/perfil/" :class="perfilActivo"><img src="static/icon-user-menu.svg" alt=""></a>
   </div>

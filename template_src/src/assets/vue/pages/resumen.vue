@@ -145,6 +145,7 @@
             const self = this;
             const app = self.$f7;
 
+            self.$store.state.tipoVenta=false;
             app.views.main.router.navigate('/metodosPago/');
             },
         },

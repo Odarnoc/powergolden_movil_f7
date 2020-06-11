@@ -122,20 +122,20 @@
         </f7-col>
       </f7-row>
 
-      <f7-row style="margin-bottom: 60px;">
+      <f7-row style="margin-bottom: 60px;" v-if="!mostrarFormularioTarjeta">
         <f7-col>
           <div class="d-grafica-oficina">
-            <f7-button fill style="color:white;" @click="pagoReferencia()" v-if="!mostrarFormularioTarjeta">
+            <f7-button fill style="color:white;" @click="pagoReferencia()" >
               <i class="far fa-sticky-note" style="margin-right: 10px;"></i>Pago con Referencia
             </f7-button>
           </div>
         </f7-col>
       </f7-row>
 
-      <f7-row style="margin-bottom: 60px;">
+      <f7-row style="margin-bottom: 60px;"  v-if="!mostrarFormularioTarjeta">
         <f7-col>
           <div class="d-grafica-oficina">
-            <f7-button fill style="color:white;" @click="pagoOxxo()" v-if="!mostrarFormularioTarjeta">
+            <f7-button fill style="color:white;" @click="pagoOxxo()">
               <i class="fas fa-store" style="margin-right: 10px;"></i>Pagos en Oxxo
             </f7-button>
           </div>
@@ -284,13 +284,18 @@ export default {
         sucursal: 0,
         email: self.correo,
         usuariid: localStorage.getItem("user_id"),
-        carrito: JSON.parse(localStorage.getItem("carrito")),
         direccion: localStorage.getItem("direccion"),
         estado: localStorage.getItem("estado"),
         cp: localStorage.getItem("codigop"),
         ciudad: localStorage.getItem("ciudad"),
         colonia: localStorage.getItem("colonia")
       };
+      if(self.$store.state.tipoVenta){
+      datos.pack_id = self.$store.state.paquete_id;
+      datos.carrito = JSON.parse(localStorage.getItem("carrito-oficina"));
+      }else{
+        datos.carrito = JSON.parse(localStorage.getItem("carrito"));
+      }
       console.log(datos);
       app.request.post(url + "pago-ecomerce-oxxo.php", datos, function result(
         respuesta
@@ -321,7 +326,6 @@ export default {
 
       var url = localStorage.getItem("url_server");
       let datos = {
-        carrito: JSON.parse(localStorage.getItem("carrito")),
         usuariid: localStorage.getItem("user_id"),
         nombre: self.nombre,
         apellido: self.apellidos,
@@ -335,6 +339,12 @@ export default {
         ciudad: localStorage.getItem("ciudad"),
         colonia: localStorage.getItem("colonia")
       };
+      if(self.$store.state.tipoVenta){
+      datos.pack_id = self.$store.state.paquete_id;
+      datos.carrito = JSON.parse(localStorage.getItem("carrito-oficina"));
+      }else{
+        datos.carrito = JSON.parse(localStorage.getItem("carrito"));
+      }
       console.log(datos);
       app.request.post(
         url + "pago-referencia-ecomerce.php",
@@ -363,6 +373,9 @@ export default {
     sdkResponseHandler(status, response) {
         const self = this;
         const app = self.$f7;
+
+        var url = localStorage.getItem("url_server");
+
       if (status != 200 && status != 201) {
           app.dialog.alert(
               "Verifica los datos de la tarjeta",
@@ -372,9 +385,7 @@ export default {
         $("#token").val(response.id);
         $("#transaction_amount").val(10);
         console.log(localStorage.getItem("carrito"));
-        console.log(iduser);
         var datados = {
-          carrito: JSON.parse(localStorage.getItem("carrito")),
           usuariid: localStorage.getItem("user_id"),
           sucursal: 0,
           email: self.correo,
@@ -385,33 +396,38 @@ export default {
           ciudad: localStorage.getItem("ciudad"),
           colonia: localStorage.getItem("colonia")
         };
+        if(self.$store.state.tipoVenta){
+        datos.pack_id = self.$store.state.paquete_id;
+        datos.carrito = JSON.parse(localStorage.getItem("carrito-oficina"));
+        }else{
+          datos.carrito = JSON.parse(localStorage.getItem("carrito"));
+        }
         $("#pay")
           .serializeArray()
           .forEach((value, key) => {
             datados[value["name"]] = value["value"];
           });
-        $.ajax({
-          url: "mercado-pago.php",
-          type: "post",
-          data: datados,
-          dataType: "json",
-          success(data) {
-            var datatres = data;
-            console.log(data);
+
+       app.request.post(
+          url+"mercado-pago.php",
+          datados,
+          function respuestaEnvio(resultados){
+            var datatres = resultados;
             if (datatres["status"] == "approved") {
               Mercadopago.clearSession();
               localStorage.setItem("carrito", JSON.stringify([]));
-              //localStorage.setItem('carrito-oficina', JSON.stringify([]));
+              localStorage.setItem('carrito-oficina', JSON.stringify([]));
               app.dialog.alert(
                 "Compra exitosamente. Enviaremos su recibo de compra a su correo electrónico.",
                 "Éxito"
               );
-              //app.views.main.router.navigate('/home/');
+              app.views.main.router.navigate('/home/');
             } else {
               app.dialog.alert("No se pudo completar la compra.", "Error");
             }
           }
-        });
+        );
+        
       }
     },
 
