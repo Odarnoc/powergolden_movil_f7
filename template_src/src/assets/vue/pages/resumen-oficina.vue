@@ -178,7 +178,6 @@ export default {
     self.paqueteSeleccionado();
 
     self.carrito = JSON.parse(localStorage.getItem("carrito-oficina"));
-    localStorage.setItem('carrito',localStorage.getItem("carrito-oficina"));
     self.direccion = localStorage.getItem("direccion");
     self.ciudad = localStorage.getItem("ciudad");
     self.colonia = localStorage.getItem("colonia");
@@ -191,6 +190,7 @@ export default {
       const self = this;
       const app = self.$f7;
 
+      self.$store.state.tipoVenta=true;
       app.views.main.router.navigate("/metodosPago/");
     },
     paqueteSeleccionado() {
